@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) => MaterialApp(
         home: Scaffold(
@@ -16,15 +21,21 @@ class MyApp extends StatelessWidget {
           ),
           body: Center(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image.asset(
-                  'images/dice2.png',
-                  width: 200,
+                Expanded(
+                  child: TextButton(
+                      onPressed: () {
+                        print('Left button got pressed');
+                      },
+                      child: Image.asset('images/dice2.png')),
                 ),
-                Image.asset(
-                  'images/dice6.png',
-                  width: 200,
+                Expanded(
+                  child: TextButton(
+                      onPressed: () {
+                        print('Gratis pizza voor iedereen');
+                      },
+                      child: Image.asset('images/dice6.png')),
                 ),
               ],
             ),
