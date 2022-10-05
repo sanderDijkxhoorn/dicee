@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -10,6 +11,28 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  int leftDice = 0;
+  int rightDice = 0;
+
+  void changeDiceLeft() {
+    setState(() {
+      leftDice = Random().nextInt(6) + 1;
+    });
+  }
+
+  void changeDiceRight() {
+    setState(() {
+      rightDice = Random().nextInt(6) + 1;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    leftDice = Random().nextInt(6) + 1;
+    rightDice = Random().nextInt(6) + 1;
+  }
+
   @override
   Widget build(BuildContext context) => MaterialApp(
         home: Scaffold(
@@ -26,16 +49,16 @@ class _MyAppState extends State<MyApp> {
                 Expanded(
                   child: TextButton(
                       onPressed: () {
-                        print('Left button got pressed');
+                        changeDiceLeft();
                       },
-                      child: Image.asset('images/dice2.png')),
+                      child: Image.asset('images/dice$leftDice.png')),
                 ),
                 Expanded(
                   child: TextButton(
                       onPressed: () {
-                        print('Gratis pizza voor iedereen');
+                        changeDiceRight();
                       },
-                      child: Image.asset('images/dice6.png')),
+                      child: Image.asset('images/dice$rightDice.png')),
                 ),
               ],
             ),
